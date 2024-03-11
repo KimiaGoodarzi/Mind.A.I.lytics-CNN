@@ -12,10 +12,8 @@ def move_images(class_name, num_images=400):
 
     all_files = os.listdir(source_dir)
 
-    # Filter out non-image files if necessary (assuming .jpg)
     image_files = [file for file in all_files if file.lower().endswith('.jpg')]
 
-    # Ensure there are enough images
     if len(image_files) < num_images:
         raise ValueError(f"Not enough image files in the directory for {class_name}.")
 
