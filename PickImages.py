@@ -18,7 +18,7 @@ image_files = [file for file in all_files if file.lower().endswith('.jpg')]
 
 
 if len(image_files) < 400:
-    raise ValueError("Not enough image files in the source.")
+    raise ValueError("Not enough image files!")
 
 
 selected_images = sample(image_files, 400)
