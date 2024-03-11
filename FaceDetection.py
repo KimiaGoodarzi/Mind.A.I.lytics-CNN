@@ -8,7 +8,7 @@ import os
 
 detector = dlib.get_frontal_face_detector()
 predictor = dlib.shape_predictor(
-    '/Users/kimiagoodarzi/Downloads/shape_predictor_68_face_landmarks.dat')  # You need to download this model
+    '/Users/kimiagoodarzi/Downloads/shape_predictor_68_face_landmarks.dat')
 
 # resize
 output_size = (48, 48)
