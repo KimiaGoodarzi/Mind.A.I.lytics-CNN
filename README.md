@@ -46,6 +46,35 @@ Below are before-and-after images demonstrating the preprocessing impact on the 
 
 These examples validate the preprocessing techniques' effectiveness in achieving dataset uniformity.
 
+## Visualization
+
+Data visualization plays a pivotal role in understanding the nuances of our dataset. Here's an overview of the visualization techniques we applied:
+
+### Grayscale Image Loading
+Images were loaded in grayscale into a PyTorch `ImageFolder` object. This approach converts the images into a tuple comprising a PyTorch tensor of shape `[1x48x48]`—representing pixel intensity values—and an integer indicating the class label inferred from the directory name.
+
+### Class Distribution Plotting
+We utilized the `targets` attribute from `ImageFolder`, which contains all labels, to analyze the class distribution. By extracting unique values and their counts, we could plot the distribution of classes to ensure balanced representation in our model training.
+
+### Image Grid Visualization
+Using the `image_grid()` function, we randomly selected 25 samples from the 2000 images to display a diverse range of expressions. These were plotted using `matplotlib` subplots to create an informative image grid.
+
+### Pixel Intensity Histograms
+For pixel intensity analysis, we flattened an image from a `[1x48x48]` tensor to a `[1x2304]` tensor. The pixel values were then distributed across 256 bins and visualized using the `matplotlib hist()` function to assess the distribution of pixel intensities.
+
+### Combined Image and Histogram Grids
+The `image_hist_grids()` function was developed to concurrently exhibit a 5x5 grid of images alongside their respective histograms. Although it incorporates the functionality of the aforementioned `image_grid()` and `pixel_intensity()` functions, it does not call them directly due to the complexity of returning plots within `matplotlib` subplots.
+
+### Figure: Class Distribution
+Below is the class distribution for the curated datasets employed in our project. As we resized the original datasets to our specifications, each class is represented with precisely 500 images.
+
+
+
+### Observations on Pixel Intensity
+The pixel intensity distribution for 'engaged' images is approximately normal, with a mild peak towards the lower intensity spectrum—consistent with the conditions under which they were captured and converted to grayscale. In contrast, the FER2013 images exhibit varied pixel intensity distributions, with some showing signs of overexposure or underexposure. This variance is attributed to the diverse sources from which these images were collected, including instances of solid backgrounds leading to sharp intensity peaks.
+
+
+
 ## `PickImages.py` Script
 
 The `PickImages.py` script automates the process of selecting and organizing images for the 'engaged' class from a consolidated directory of extracted frames.
@@ -87,3 +116,5 @@ The `FaceDetection.py` script leverages the dlib library's facial detection capa
 - **Face Alignment**: Adjusts the face orientation based on eye and nose landmarks through a similarity transformation.
 
 - **Image Processing**: Processes each image in the given directory, aligning the face and resizing it to the required dimensions.
+
+
