@@ -118,8 +118,7 @@ The `FaceDetection.py` script leverages the dlib library's facial detection capa
 
 ## `COMP472ClassVisualization` Script
 
-The `COMP472ClassVisualization` script, developed in a Jupyter Notebook on Google Colab, is designed to provide insightful visualizations of our dataset. This script aids in understanding the data's distribution and characteristics, essential for the subsequent stages of model training and evaluation.
-
+The `COMP472ClassVisualization` script, is designed to provide insightful visualizations of our dataset. This script helps in understanding the data's distribution and characteristics.
 ### Script Features
 
 - **Class Distribution Plotting**: Utilizes `plot_bar` function to display a bar graph, illustrating the number of images per class within the dataset. This visualization helps identify if any class is disproportionately represented.
