@@ -116,4 +116,18 @@ The `FaceDetection.py` script leverages the dlib library's facial detection capa
 
 - **Image Processing**: Processes each image in the given directory, aligning the face and resizing it to the required dimensions.
 
+## `COMP472ClassVisualization` Script
+
+The `COMP472ClassVisualization` script, developed in a Jupyter Notebook on Google Colab, is designed to provide insightful visualizations of our dataset. This script aids in understanding the data's distribution and characteristics, essential for the subsequent stages of model training and evaluation.
+
+### Script Features
+
+- **Class Distribution Plotting**: Utilizes `plot_bar` function to display a bar graph, illustrating the number of images per class within the dataset. This visualization helps identify if any class is disproportionately represented.
+
+- **Sample Images Grid**: The `image_grid` function randomly selects 25 images and arranges them in a 5x5 grid. This grid offers a glimpse into the dataset's diversity and helps spot any noticeable anomalies or potential mislabeling within the classes.
+
+- **Pixel Intensity Histogram**: For the randomly chosen images, the `pixel_intensity` function plots histograms to display the distribution of pixel intensities. For color images, it would overlay the intensity distributions of the Red, Green, and Blue channels.
+
+- **Image and Histogram Grids**: The `image_hist_grids` function combines functionalities to display both a 5x5 grid of images and their corresponding pixel intensity histograms, providing a comprehensive view of the visual and statistical properties of the samples.
+
 
