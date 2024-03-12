@@ -65,13 +65,12 @@ For pixel intensity analysis, we flattened an image from a `[1x48x48]` tensor to
 ### Combined Image and Histogram Grids
 The `image_hist_grids()` function was developed to concurrently exhibit a 5x5 grid of images alongside their respective histograms. Although it incorporates the functionality of the aforementioned `image_grid()` and `pixel_intensity()` functions, it does not call them directly due to the complexity of returning plots within `matplotlib` subplots.
 
-### Figure: Class Distribution
-Below is the class distribution for the curated datasets employed in our project. As we resized the original datasets to our specifications, each class is represented with precisely 500 images.
-
+<img width="569" alt="Screenshot 2024-03-11 at 10 33 00 PM" src="https://github.com/KimiaGoodarzi/COMP472-GroupAK_14/assets/116121794/55fc26c4-2267-419e-9e02-b1b4d3319cd6">
 
 
 ### Observations on Pixel Intensity
 The pixel intensity distribution for 'engaged' images is approximately normal, with a mild peak towards the lower intensity spectrum—consistent with the conditions under which they were captured and converted to grayscale. In contrast, the FER2013 images exhibit varied pixel intensity distributions, with some showing signs of overexposure or underexposure. This variance is attributed to the diverse sources from which these images were collected, including instances of solid backgrounds leading to sharp intensity peaks.
+
 
 
 
