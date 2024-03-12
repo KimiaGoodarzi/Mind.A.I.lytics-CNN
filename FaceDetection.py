@@ -7,8 +7,7 @@ import os
 # to center and align faces in engaged dataset, and resize them to 48x48 pixels
 
 detector = dlib.get_frontal_face_detector()
-predictor = dlib.shape_predictor(
-    '/Users/kimiagoodarzi/Downloads/shape_predictor_68_face_landmarks.dat')
+predictor = dlib.shape_predictor('shape_predictor_68_face_landmarks.dat')
 
 # resize
 output_size = (48, 48)
