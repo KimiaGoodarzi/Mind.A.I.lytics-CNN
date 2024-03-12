@@ -4,7 +4,7 @@ import shutil
 from random import sample
 
 
-source_dir = '/Users/kimiagoodarzi/Downloads/Consolidated_Extracted_Images 2'
+source_dir = 'Initial_Extracted_Images_Engaged '
 target_dir = 'train/engaged'
 
 
@@ -28,3 +28,4 @@ for image in selected_images:
     shutil.move(os.path.join(source_dir, image), os.path.join(target_dir, image))
 
 print(f"Moved {len(selected_images)} images to {target_dir}")
+
