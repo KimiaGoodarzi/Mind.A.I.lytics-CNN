@@ -51,10 +51,10 @@ def pixel_intensity(image):
 
     return plt.gcf()
 
-def image_hist_grids(images):
+def image_hist_grids(images, classId):
     #Select 25 random images from the data
     num_samples = len(images)
-    indices = np.random.choice(num_samples, size=25, replace=False)
+    indices = np.random.choice(range(classId*500,(500+classId*500)), size=25, replace=False)
     selected_images = [images[i] for i in indices]
     print(indices)
 
@@ -105,3 +105,5 @@ transform = v2.Compose([v2.ToImage(),v2.Grayscale(),v2.ToDtype(torch.float32, sc
 dataset=ImageFolder(path,transform)
 print(dataset.classes)
 image_hist_grids(dataset)
+
+image_hist_grids(dataset,3)
