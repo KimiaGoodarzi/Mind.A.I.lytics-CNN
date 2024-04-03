@@ -137,4 +137,29 @@ The `COMP472ClassVisualization` script, is designed to provide insightful visual
 
 - **Image and Histogram Grids**: The `image_hist_grids` function combines functionalities to display both a 5x5 grid of images and their corresponding pixel intensity histograms, providing a comprehensive view of the visual and statistical properties of the samples.
 
+# CNN Model for Image Classification
+
+MainModel.py contains a Convolutional Neural Network (CNN) implemented in PyTorch, which classifies grayscale images into four classes. The model's architecture and training processes are constructed to for accurate image recognition.
+
+## Model Architecture
+
+The CNN model includes:
+- Convolutional layers with increasing filter sizes (32, 64, 128, 256) and 3x3 kernels to extract features.
+- ReLU activation functions for non-linearity.
+- Batch normalization 
+- MaxPooling layers to reduce dimensions and Dropout layers to prevent overfitting.
+- Fully connected layers that condense the learned features into final class predictions.
+
+## Training Process
+
+- The model is trained with Cross-Entropy Loss and optimized using the Adam optimizer.
+- Hyperparameters such as learning rate, batch size, and the number of epochs are tuned.
+- Early stopping is implemented to prevent overfitting
+  
+
+<img width="1219" alt="Screenshot 2024-04-02 at 11 11 05 PM" src="https://github.com/KimiaGoodarzi/COMP472-GroupAK_14/assets/116121794/2ee4200c-d19d-4f3a-b83b-a9ee2e5f2151">
+
+
+
+
 
