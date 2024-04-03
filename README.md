@@ -161,5 +161,28 @@ The CNN model includes:
 
 
 
+# CNN Model Variants for Image Classification
 
+There are 2 variants of the Cmodel. Each variant modifies the architecture of the main model to explore different aspects of CNN design and their impact on image classification performance.
+
+## Variant 1A - Increased Depth
+Variant 1A extends the main model by adding an extra convolutional layer in each block. 
+
+- **Key Change**: Additional convolutional layers in each block.
+- **Impact**: Intended to improve feature extraction, but increased complexity did not yield better results compared to the main model.
+
+## Variant 1B - Reduced Depth
+Variant 1B simplifies the main model by removing the third convolutional block
+
+## Variant 2A - Larger Kernels
+Variant 2A modifies the main model's kernel sizes in the convolutional layers from 3x3 to larger 5x5 kernels to capture broader features.
+
+- **Key Change**: Increased kernel size to 5x5 with padding adjusted to 2.
+- **Impact**: The larger kernels increased computational complexity and may pose a higher risk of overfitting. Performance did not surpass that of the main model.
+
+## Variant 2B - Smaller Kernels
+Variant 2B adopts smaller 2x2 kernels across all convolutional layers, aiming to focus on more detailed feature extraction.
+
+- **Key Change**: Decreased kernel size to 2x2 with padding set to 1.
+- **Impact**: This may lead to quicker training and reduced overfitting, but smaller kernels might limit the capture of larger-scale features, affecting the model's generalization ability.
 
