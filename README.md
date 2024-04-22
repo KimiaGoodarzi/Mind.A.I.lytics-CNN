@@ -189,17 +189,17 @@ Variant 2B adopts smaller 2x2 kernels across all convolutional layers, aiming to
 
 ## Image Labeling 
 
-ImageLabelling.py contains the code for manually labeling images based on gender and age. It processes images in the folders, displays them, and prompts for input. 
+ImageLabelling.py: contains the code for manually labeling images based on gender and age. It processes images in the folders, displays them, and prompts for input. 
 
 # Evaluation
 ## CNN Model Variants Evaluations
 
-comp472part2evaluation.py
+comp472part2evaluation.py: 
 This section evaluates the CNN model variants to determine their performance on image classification tasks including accuracy, precision, recall, and F1-score. 
 
 ## KFold Cross-Validation and Bias Analysis
 
-comp472part3evaluation.py
+comp472part3evaluation.py: 
 This section focuses on implementing 10 fold cross validation on our CNN to evaluate its performance across subsets of the dataset. It also addresses bias analysis by examining the model's performance for different age and gender.
 
 
