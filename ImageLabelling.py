@@ -1,6 +1,7 @@
 import os
-import csv
+import pandas as pd
 from PIL import Image
+import matplotlib.pyplot as plt
 
 
 # Sort files alphanumerically
@@ -11,84 +12,73 @@ def sorted_alphanumeric(data):
     return sorted(data, key=alphanum_key)
 
 
-# Label mapping dictionaries
-gender_map = {
-    "1": "Male",
-    "2": "Female",
-    "3": "Other/Non-binary"
-}
+data_folder = "COMP472Data"
+output_folder = "labeled_data"
+label_map_gender = {1: "Male", 2: "Female", 3: "Other/Non-binary"}
+label_map_age = {1: "Young", 2: "Middle-aged", 3: "Senior"}
 
-age_map = {
-    "1": "Young",
-    "2": "Middle-aged",
-    "3": "Senior"
-}
+os.makedirs(output_folder, exist_ok=True)
 
 
-# Get input for labeling
-def get_label():
-    gender = input("Enter gender label (1 for Male, 2 for Female, 3 for Other/Non-binary): ")
-    age = input("Enter age label (1 for Young, 2 for Middle-aged, 3 for Senior): ")
-    return gender_map[gender], age_map[age]
+def label_images(folder):
+    path = os.path.join(data_folder, folder)
+    csv_file_path = os.path.join(output_folder, f"{folder}_labels.csv")
+
+    # Load existing data
+    if os.path.exists(csv_file_path):
+        df = pd.read_csv(csv_file_path)
+    else:
+        df = pd.DataFrame(columns=['Image', 'Gender', 'Age'])
+
+    labeled_images = set(df['Image'])
+
+    # Sort images before labeling
+    images = sorted_alphanumeric([img for img in os.listdir(path) if
+                                  (img.endswith('.png') or img.endswith('.jpg')) and
+                                  img not in labeled_images])
+
+    for idx, image in enumerate(images):
+        img_path = os.path.join(path, image)
+        img = Image.open(img_path).resize((100, 100)).convert('L')
+
+        plt.imshow(img, cmap='gray')
+        plt.axis('off')
+        plt.show()
+
+        label = input("Gender: 1- Male / 2-Female / 3-Other/Non-binary\n"
+                      "Age:  1- Young / 2- Middle-aged / 3- Senior\n"
+                      "Enter labels (GenderAge, e.g., 23 for Female Senior), or type 'quit' to exit:: ")
+        if label.lower() == 'quit':
+            df.to_csv(csv_file_path, index=False)
+            print("Progress saved. Exiting now.")
+            exit(0)
+
+        while len(label) != 2 or not label.isdigit() or int(label[0]) not in label_map_gender or int(
+                label[1]) not in label_map_age:
+            print(
+                "Invalid input. Please enter two numbers: the first for gender (1-3),"
+                " the second for age (1-3), or 'quit' to exit.")
+            label = input("Enter labels (GenderAge): ")
+            if label.lower() == 'quit':
+                df.to_csv(csv_file_path, index=False)
+                print("Progress saved. Exiting now.")
+                exit(0)
+
+        new_row = pd.DataFrame([[image, label_map_gender[int(label[0])], label_map_age[int(label[1])]]],
+                               columns=['Image', 'Gender', 'Age'])
+        df = pd.concat([df, new_row], ignore_index=True)
+
+        # Save progress after every labeled image
+        df.to_csv(csv_file_path, index=False)
+        print("Progress saved after labeling image: " + image)
+
+    print(f"All labels for folder {folder} saved to {csv_file_path}")
 
 
-# Save labels to CSV
-def save_labels_to_csv(labels, filename):
-    with open(filename, mode='a', newline='') as file:
-        writer = csv.writer(file)
-        writer.writerow(labels)
+# Process each subfolder in sorted order
+subfolders = sorted_alphanumeric(['engaged', 'happy', 'surprise', 'neutral'])
+for folder in subfolders:
+    print(f"Processing images in folder: {folder}")
+    label_images(folder)
 
-
-# Read labeled images from CSV to avoid relabeling
-def get_labeled_images(filename):
-    if os.path.exists(filename):
-        with open(filename, mode='r', newline='') as file:
-            reader = csv.reader(file)
-            labeled_images = {rows[0] for rows in reader}
-            return labeled_images
-    return set()
-
-
-# Process images in a folder
-def process_folder(folder_path, emotion, output_folder):
-    image_files = os.listdir(folder_path)
-    image_files = sorted_alphanumeric(image_files)
-    labels_file = os.path.join(output_folder, f"{emotion}_labels.csv")
-
-    labeled_images = get_labeled_images(labels_file)
-
-    if not os.path.exists(labels_file):
-        with open(labels_file, mode='w', newline='') as file:
-            writer = csv.writer(file)
-            writer.writerow(["Image", "Gender", "Age"])
-
-    for image_file in image_files:
-        if image_file in labeled_images:
-            continue  # Skip labeled images
-        image_path = os.path.join(folder_path, image_file)
-        img = Image.open(image_path)
-        img = img.resize((100, 100))
-        img.show()
-        gender, age = get_label()
-        labels = [image_file, gender, age]
-        save_labels_to_csv(labels, labels_file)
-        print(f"Labeled: {image_file}, Gender: {gender}, Age: {age}")
-
-
-def main():
-    data_folder = "COMP472Data"
-    output_folder = "labelled_images"
-    if not os.path.exists(output_folder):
-        os.makedirs(output_folder)
-
-    emotions = ["engaged", "happy", "surprise", "neutral"]
-    emotions = sorted_alphanumeric(emotions)
-
-    for emotion in emotions:
-        folder_path = os.path.join(data_folder, emotion)
-        print(f"Processing folder: {emotion}")
-        process_folder(folder_path, emotion, output_folder)
-
-
-if __name__ == "__main__":
-    main()
+print("All images have been labeled and saved.")
