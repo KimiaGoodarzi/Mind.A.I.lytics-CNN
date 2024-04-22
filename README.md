@@ -202,5 +202,6 @@ This section evaluates the CNN model variants to determine their performance on 
 comp472part3evaluation.py: 
 This section focuses on implementing 10 fold cross validation on our CNN to evaluate its performance across subsets of the dataset. It also addresses bias analysis by examining the model's performance for different age and gender.
 
+<img width="638" alt="Screenshot 2024-04-21 at 10 35 04 PM" src="https://github.com/KimiaGoodarzi/COMP472-GroupAK_14/assets/116121794/2bee97c5-543e-479f-abf1-dd16cb42e37f">
 
 
