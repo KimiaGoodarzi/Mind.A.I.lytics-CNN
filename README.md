@@ -187,7 +187,7 @@ Variant 2B adopts smaller 2x2 kernels across all convolutional layers, aiming to
 - **Impact**: This may lead to quicker training and reduced overfitting, but smaller kernels might limit the capture of larger-scale features, affecting the model's generalization ability.
 
 
-# Image Labeling 
+## Image Labeling 
 
 ImageLabelling.py contains the code for manually labeling images based on gender and age. It processes images in the folders, displays them, and prompts for input. 
 
